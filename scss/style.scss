@@ -3,10 +3,14 @@
 @import 'reset';
 
 body {
+	height: 5000px;
 	font-size: 100%;
 	color: #333333;
     font-family: $oswald;
-    font-weight: 400;
+	font-weight: 400;
+	&.fixed {
+		overflow: hidden;
+	}
 }
 
 @include selection {
@@ -21,7 +25,7 @@ header {
     .pre-header {
         display: none;
         padding: .45em 0;
-        border-bottom: 1px solid #EEEEEE;
+		border-bottom: 1px solid #EEEEEE;
         @media (min-width: 992px) {
             display: block;
         }
@@ -74,8 +78,11 @@ header {
 		padding: .75em 0;
 		background-color: $blue;
 		@media (min-width: 992px) {
-			padding: .875em 0;
+			position: relative;
+			padding: .875em 0 0;
 			background-color: white;
+			transition: .3s;
+			z-index: 1;
 		}
         .head-top-row {
 			display: flex;
@@ -250,24 +257,35 @@ header {
 		position: fixed;
 		width: 100%;
 		height: 100%;
+		padding: 0 0 5em;
 		background-color: white;
 		left: -100%;
 		opacity: 0;
 		z-index: 20;
+		overflow: auto;
 		transition: .3s;
 		@media (min-width: 992px) {
 			position: relative;
 			width: auto;
 			height: auto;
+			padding: 0;
 			left: 0;
 			opacity: 1;
+			overflow: initial;
 			z-index: auto;
+		}
+		.container {
+			padding: 0;
+			@media (min-width: 992px) {
+				padding: 0 15px;
+			}
 		}
 		&.open {
 			left: 0;
 			opacity: 1;
 		}
 		.head-menu-nav {
+			position: relative;
 			display: flex;
 			flex-direction: column;
 			padding: 1em 0;
@@ -277,14 +295,17 @@ header {
 				padding: 0;
 			}
 			&__item {
+				position: relative;
 				width: 100%;
 				@media (min-width: 992px) {
+					position: static;
 					width: auto;
+					display: block;
 				}
 				.btn-nav-first {
 					position: relative;
 					display: block;
-					padding: .75em 0;
+					padding: .75em 15px;
 					font-size: .75em;
 					color: $gray-txt;
 					font-weight: 500;
@@ -295,7 +316,7 @@ header {
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						padding: .5em 0 1em;
+						padding: 1em 0 1.125em;
 						text-align: center;
 						line-height: 1.3em;
 					}
@@ -303,9 +324,165 @@ header {
 						display: block;
 					}
 					&:hover {
-						color: $red;
+						color: $blue;
 					}
 				}
+				.caret-nav-xs {
+					position: absolute;
+					width: 70px;
+					height: 30px;
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+					top: 2px;
+					right: 0;
+					@media (min-width: 992px) {
+						display: none;
+					}
+					img {
+						display: block;
+						margin-right: 20px;
+						transition: .3s;
+					}
+				}
+				&.open-sub1 {
+					.caret-nav-xs {
+						img {
+							transform: rotate(-180deg);
+						}
+					}
+				}
+				.sub-menu {
+					display: none;
+					background-color: $gray-bg;
+					padding: .5em 0;
+					@media (min-width: 992px) {
+						display: block;
+						background-color: white;
+						padding: 0;
+						opacity: 0;
+						visibility: hidden;
+						transition: .3s;
+					}
+					&__nav {
+						@media (min-width: 992px) {
+							position: absolute;
+							display: flex;
+							width: 100%;
+							padding: .5em 1.5em 2em;
+							background-color: white;
+							left: 0;
+							z-index: 1;
+						}
+						.sub-menu-box {
+							position: relative;
+							@media (min-width: 992px) {
+								width: 25%;
+							}
+							.btn-nav-second {
+								display: block;
+								padding: .5em 15px;
+								font-size: .75em;
+								color: $blue;
+								text-transform: uppercase;
+								font-weight: 500;
+								transition: .3s;
+								@media (min-width: 992px) {
+									display: inline-block;
+									padding: .5em 0;
+								}
+								&:hover {
+									text-decoration: underline;
+								}
+							}
+							.caret-sub-nav-xs {
+								position: absolute;
+								width: 70px;
+								height: 30px;
+								display: flex;
+								justify-content: flex-end;
+								align-items: center;
+								top: 0;
+								right: 0;
+								@media (min-width: 992px) {
+									display: none;
+								}
+								img {
+									display: block;
+									margin-right: 25px;
+									transition: .3s;
+								}
+							}
+							&.open-sub2 {
+								.caret-sub-nav-xs {
+									img {
+										transform: rotate(-180deg);
+									}
+								}
+							}
+							&__list {
+								display: none;
+								padding: 0 1.5em .5em;
+								@media (min-width: 992px) {
+									display: block;
+									padding: 0;
+								}
+								li {
+									a {
+										display: inline-block;
+										font-size: .75em;
+										color: #999999;
+										text-transform: uppercase;
+										transition: .3s;
+										&:hover {
+											color: $blue;
+											text-decoration: underline;
+										}
+									}
+								}
+							}
+						}
+					}
+					&__bg {
+						position: fixed;
+						display: none;
+						width: 100%;
+						height: 100%;
+						background-color: rgba(0,0,0,.75);
+						left: 0;
+						@media (min-width: 992px) {
+							display: block;
+						}
+					}
+				}
+				&.show {
+					.btn-nav-first {
+						@media (min-width: 992px) {
+							color: $blue;
+						}
+					}
+					.sub-menu {
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
+	&.fixed {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		animation: headSlide .5s forwards;
+		-webkit-animation: headSlide .5s forwards;
+		@keyframes headSlide {
+			0% {
+				top: -170px;
+			}
+			100% {
+				top: 0;
 			}
 		}
 	}
