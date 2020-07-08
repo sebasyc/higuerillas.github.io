@@ -320,6 +320,22 @@ header {
 						text-align: center;
 						line-height: 1.3em;
 					}
+					&:after {
+						content: "";
+						position: absolute;
+						width: 7px;
+						height: 4px;
+						background-image: url('../images/caret-head-nav.svg');
+						background-size: cover;
+						background-position: center;
+						background-repeat: no-repeat;
+						display: none;
+						right: -10px;
+						@include center-y;
+						@media (min-width: 992px)  {
+							display: block;
+						}
+					}
 					span {
 						display: block;
 					}
