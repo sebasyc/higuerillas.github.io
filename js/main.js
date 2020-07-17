@@ -43,4 +43,18 @@ $(document).ready( function () {
             }
         })
     }
+
+    $('.slide-home-row').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 11000,
+        arrows: false,
+        dots: true,
+        speed: 1000,
+        pauseOnFocus: false,
+        pauseOnHover: false
+    })
+
 })
