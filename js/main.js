@@ -44,7 +44,7 @@ $(document).ready( function () {
         })
     }
 
-    $('.slide-home-row').slick({
+    $('.slide-home').slick({
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -55,6 +55,62 @@ $(document).ready( function () {
         speed: 1000,
         pauseOnFocus: false,
         pauseOnHover: false
+    })
+
+    $('.banners-row-slide').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        autoplay: true,
+        autoplaySpeed: 11000,
+        arrows: false,
+        dots: true,
+        pauseOnFocus: false,
+        pauseOnHover: false,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                }
+            }
+        ]
+    })
+
+    $('.products-slide').slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        autoplay: true,
+        autoplaySpeed: 11000,
+        arrows: false,
+        dots: true,
+        pauseOnFocus: false,
+        pauseOnHover: false,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ]
     })
 
 })
