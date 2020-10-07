@@ -1,3 +1,7 @@
+$(window).on("load", function(e) {
+	$(".cont-loader").fadeOut('slow')
+})
+
 $(document).ready( function () {
 
     $(window).scroll(function() {
@@ -111,6 +115,11 @@ $(document).ready( function () {
                 }
             }
         ]
+    })
+
+    $('.drop-locate').click(function() {
+        $(this).toggleClass('active')
+        $('.list-locate').toggleClass('active')
     })
 
 })
