@@ -36,7 +36,7 @@
 	-moz-border-radius: $radius;
 }
 
-@mixin appearance($style){
+@mixin appearance($style) {
 	appearance: $style;
 	-webkit-appearance: $style;
 	-moz-appearance: $style;
